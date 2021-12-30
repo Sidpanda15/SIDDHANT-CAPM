@@ -60,8 +60,7 @@ context  master {
         DIM_UNIT: String(2);
     }
 
-    entity employees : cuid , managed {
-    ID: String(40);
+    entity employees : cuid{
     nameFirst:	String(40);
     nameMiddle:	String(40);
     nameLast:	String(40);

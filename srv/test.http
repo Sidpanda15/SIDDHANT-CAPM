@@ -1,0 +1,60 @@
+GET http://localhost:4004/CatalogService/
+###Read services' metadata
+GET http://localhost:4004/CatalogService/$metadata
+
+###Read top 2 values
+GET http://localhost:4004/CatalogService/EmployeeSet?$top=2
+
+###
+GET http://localhost:4004/CatalogService/BusinessPartnerSet
+
+###
+GET http://localhost:4004/CatalogService/POs
+
+###
+GET http://localhost:4004/CatalogService/POs?$expand=Items,PARTNER_GUID
+###
+GET http://localhost:4004/CatalogService/POs?$expand=PARTNER_GUID
+###
+GET http://localhost:4004/CatalogService/POItems?$expand=PARENT_KEY,PRODUCT_GUID
+
+###
+POST http://localhost:4004/CatalogService/EmployeeSet
+Content-Type: application/json
+
+ {
+           
+            "nameFirst": "Mohit",
+            "nameMiddle": null,
+            "nameLast": "Sharma",
+            "nameInitials": null,
+            "sex": "M",
+            "language": "H",
+            "phoneNumber": "+91 897566909",
+            "email": "Moni.sharma@itelo.info",
+            "loginName": "MONI",
+            "accountNumber": "111222330",
+            "bankName": "SBI bank"
+        }
+
+###getting single employee data which was just created by post call
+GET http://localhost:4004/CatalogService/EmployeeSet/c41bf294-aab4-40e6-a4b4-70956817225f
+
+###
+PUT http://localhost:4004/CatalogService/EmployeeSet/c41bf294-aab4-40e6-a4b4-70956817225f
+Content-Type: application/json
+
+{
+    "salaryAmount": "56748.90",
+    "Currency_code": "INR"
+}
+###
+GET  http://localhost:4004/CatalogService/EmployeeSet/0f47be87-5be1-40d6-b1f0-29fba59a56d3
+###
+PATCH http://localhost:4004/CatalogService/EmployeeSet/0f47be87-5be1-40d6-b1f0-29fba59a56d3
+Content-Type: application/json
+
+{
+    "salaryAmount": "100000.90",
+    "Currency_code": "INR"
+}
