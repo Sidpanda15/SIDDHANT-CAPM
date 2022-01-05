@@ -24,7 +24,7 @@ Content-Type: application/json
 
  {
            
-            "nameFirst": "Mohit",
+            "nameFirst": "Sagar",
             "nameMiddle": null,
             "nameLast": "Sharma",
             "nameInitials": null,
@@ -58,3 +58,60 @@ Content-Type: application/json
     "salaryAmount": "100000.90",
     "Currency_code": "INR"
 }
+
+### post request using the CDS queries 
+POST http://localhost:4004/mysrvdemo/InsertEmployeeSrv
+Content-Type: application/json
+
+ {
+            "ID" : "02BD2137-0890-1EEA-A6C2-BB55C197A7DE",
+            "nameFirst": "Janak",
+            "nameMiddle": null,
+            "nameLast": "Pareek",
+            "nameInitials": null,
+            "sex": "M",
+            "language": "H",
+            "phoneNumber": "+91 897566909",
+            "email": "Moni.sharma@itelo.info",
+            "loginName": "MONI",
+            "accountNumber": "111222330",
+            "bankName": "SBI bank"
+}
+
+###
+PUT http://localhost:4004/mysrvdemo/UpdateEmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C19787FB
+Content-Type: application/json
+
+{
+    "nameFirst": "Ananaya",
+    "nameLast": "Vishwanathan"
+}
+
+###
+GET http://localhost:4004/mysrvdemo/ReadEmployeeSrv/ca1c05ae-c8e1-48a8-b3ee-59ab869d281c
+
+###
+DELETE http://localhost:4004/mysrvdemo/DeleteEmployeeSrv/ca1c05ae-c8e1-48a8-b3ee-59ab869d281c
+###getting a random po
+GET http://localhost:4004/CatalogService/POs?$top=5
+
+###
+POST http://localhost:4004/CatalogService/POs('02BD2137-0890-1EEA-A6C2-BB55C1978999')/CatalogService.boost
+Content-Type: application/json
+{}
+###
+GET  http://localhost:4004/CatalogService/POs('02BD2137-0890-1EEA-A6C2-BB55C1978999')/CatalogService.largestOrder()
+
+###
+GET  http://localhost:4004/CatalogService/POs('02BD2137-0890-1EEA-A6C2-BB55C1978999')
+
+##v2 magic
+### Get call using v2 for POs
+GET http://localhost:4004/v2/CatalogService/POs?$top=5
+
+### custom action using v2
+POST  http://localhost:4004/v2/CatalogService/POs_boost?NODE_KEY=02BD2137-0890-1EEA-A6C2-BB55C1978999
+Content-Type: application/json
+
+### custom function 
+GET http://localhost:4004/v2/CatalogService/POs_largestOrder?NODE_KEY=02BD2137-0890-1EEA-A6C2-BB55C1978999

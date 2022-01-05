@@ -10,8 +10,14 @@ service CatalogService@(path:'/CatalogService'){
         title: '{i18n>poHeader}'
     )as projection on transaction.purchaseorder{
         *,
+        round(GROSS_AMOUNT , 2) as GROSS_AMOUNT :Decimal(10,2),
         Items : redirected to POItems
+    }actions{
+        function largestOrder() returns array of POs;
+        action boost();
     }
+
+
     entity POItems as projection on transaction.poitems{
         *,
         PARENT_KEY : redirected to POs,
