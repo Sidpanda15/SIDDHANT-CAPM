@@ -20,6 +20,8 @@ context  master {
     COMPANY_NAME: String(80);
     }
 
+    
+
    entity address {
     key  NODE_KEY: Guid;
     CITY: String(64);
@@ -60,6 +62,12 @@ context  master {
         DIM_UNIT: String(2);
     }
 
+    annotate product with{
+        DESCRIPTION @title : '{i18n>Description}';
+        PRODUCT_ID  @title : '{i18n>Product_id}'
+    } ;
+    
+
     entity employees : cuid{
     nameFirst:	String(40);
     nameMiddle:	String(40);
@@ -93,7 +101,7 @@ context  master {
 
  context transaction{
          entity purchaseorder : common.Amount{
-             key NODE_KEY: Guid;
+            key NODE_KEY: Guid;
             PO_ID : String(12);
             PARTNER_GUID : Association to master.businesspartner;
             LIFECYCLE_STATUS : String(2);
@@ -107,6 +115,31 @@ context  master {
         PO_ITEM_POS : String(5);
         PRODUCT_GUID : Association to master.product;
     }
+
+    annotate poitems with{
+        NODE_KEY @title:'{i18n>Node_key}';
+        PARENT_KEY@title : '{i18n>Parent_key}';
+        PO_ITEM_POS@title : '{i18n>PoitemsPo}';
+        PRODUCT_GUID@title : '{i18n>Product_Guid}';
+        TAX_AMOUNT @title:'{i18n>Tax_Amount}';
+        NET_AMOUNT @title:'{i18n>Net_Amount}';
+        GROSS_AMOUNT @title:'{i18n>Gross_amount}';
+        CURRENCY_CODE @title:'{i18n>Currency_code}';
+    };
+    
+
+    annotate purchaseorder with{
+        NODE_KEY @title:'{i18n>Node_key}';
+        PO_ID @title:'{i18n>Po_id}';
+        PARTNER_GUID @title:'{i18n>Partner_Id}';
+        LIFECYCLE_STATUS @title:'{i18n>Lifecyscle_Status}';
+        OVERALL_STATUS @title:'{i18n>Overall_status}';
+        TAX_AMOUNT @title:'{i18n>Tax_Amount}';
+        NET_AMOUNT @title:'{i18n>Net_Amount}';
+        GROSS_AMOUNT @title:'{i18n>Gross_amount}';
+        CURRENCY_CODE @title:'{i18n>Currency_code}';
+    } ;
+    
 
 
  }
